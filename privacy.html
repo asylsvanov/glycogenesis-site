@@ -15,7 +15,9 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -32,25 +34,24 @@
 <body class="privacy-page">
 
   <header id="header" class="header d-flex align-items-center sticky-top">
-    <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-
-    <a href="index.html" class="logo d-flex align-items-center">
+    <div
+      class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
         <h1 class="sitename">E-Learning</h1>
-    </a>
+      </a>
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.html" class="active">Басты бет</a></li>
-          <li><a href="#about">Гикогенез анимациясы</a></li>
-          <li><a href="#schedule">Симуляция жасау</a></li>
-          <li><a href="privacy.html">Біліміңді тексер</a></li>
-          <li><a href="index.html#speakers">Авторлар</a></li>
+          <li><a href="index.html">Басты бет</a></li>
+          <li><a href="index.html#about">Гикогенез анимациясы</a></li>
+          <li><a href="starter-page.html">Симуляция жасау</a></li>
+          <li><a href="privacy.html" class="active">Біліміңді тексер</a></li>
+          <li><a href="speaker-details.html">Авторлар</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
       <a class="btn-getstarted" href="contact.html">Кері байланыс</a>
-  
 
     </div>
   </header>
@@ -60,157 +61,198 @@
     <section id="privacy" class="privacy section">
 
       <div class="container" data-aos="fade-up">
-        <!-- Header -->
-        <div class="privacy-header" data-aos="fade-up">
-          <div class="header-content">
-            <h1>Біліміңді тексер</h1>
-            <p class="intro-text">Төмендегі тестті өту арқылы ұсынылған матиралы қаншалықты меңгергеніңді тексер:</p>
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Біліміңді тексер</h2>
+          <p>Төмендегі тестті өту арқылы ұсынылған матиралы қаншалықты меңгергеніңді тексер:</p>
+        </div>
+        <!-- End Section Title -->
+
+
+        <!-- Quiz -->
+        <div class="row justify-content-center mt-4">
+          <div class="col-lg-10">
+
+            <form id="quizForm" class="card shadow-sm border-0">
+              <div class="card-body p-4">
+
+                <!-- Q1 -->
+                <div class="mb-4" data-q="q1">
+                  <h5 class="mb-2">1. Гликоген дегеніміз не?</h5>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q1" value="A"
+                      id="q1a"><label class="form-check-label" for="q1a">A) Ақуыз</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q1" value="B"
+                      id="q1b"><label class="form-check-label" for="q1b">B) Май</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q1" value="C"
+                      id="q1c"><label class="form-check-label" for="q1c">C) Көмірсу қоры</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q1" value="D"
+                      id="q1d"><label class="form-check-label" for="q1d">D) Витамин</label></div>
+                  <div class="mt-2 feedback"></div>
+                  <hr class="mt-3">
+                </div>
+
+                <!-- Q2 -->
+                <div class="mb-4" data-q="q2">
+                  <h5 class="mb-2">2. Гликоген негізінен қай мүшелерде жиналады?</h5>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q2" value="A"
+                      id="q2a"><label class="form-check-label" for="q2a">A) Өкпе мен жүректе</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q2" value="B"
+                      id="q2b"><label class="form-check-label" for="q2b">B) Бауыр мен бұлшық етте</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q2" value="C"
+                      id="q2c"><label class="form-check-label" for="q2c">C) Бүйректе</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q2" value="D"
+                      id="q2d"><label class="form-check-label" for="q2d">D) Асқазанда</label></div>
+                  <div class="mt-2 feedback"></div>
+                  <hr class="mt-3">
+                </div>
+
+                <!-- Q3 -->
+                <div class="mb-4" data-q="q3">
+                  <h5 class="mb-2">3. Гликогеннің негізгі қызметі қандай?</h5>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q3" value="A"
+                      id="q3a"><label class="form-check-label" for="q3a">A) Оттек тасымалдау</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q3" value="B"
+                      id="q3b"><label class="form-check-label" for="q3b">B) Қорғаныш қызметі</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q3" value="C"
+                      id="q3c"><label class="form-check-label" for="q3c">C) Энергия қоры болу</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q3" value="D"
+                      id="q3d"><label class="form-check-label" for="q3d">D) Жылу сақтау</label></div>
+                  <div class="mt-2 feedback"></div>
+                  <hr class="mt-3">
+                </div>
+
+                <!-- Q4 -->
+                <div class="mb-4" data-q="q4">
+                  <h5 class="mb-2">4. Гликогеннің глюкозаға дейін ыдырау процесі қалай аталады?</h5>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q4" value="A"
+                      id="q4a"><label class="form-check-label" for="q4a">A) Фотосинтез</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q4" value="B"
+                      id="q4b"><label class="form-check-label" for="q4b">B) Гликолиз</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q4" value="C"
+                      id="q4c"><label class="form-check-label" for="q4c">C) Гликогенолиз</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q4" value="D"
+                      id="q4d"><label class="form-check-label" for="q4d">D) Тыныс алу</label></div>
+                  <div class="mt-2 feedback"></div>
+                  <hr class="mt-3">
+                </div>
+
+                <!-- Q5 -->
+                <div class="mb-4" data-q="q5">
+                  <h5 class="mb-2">5. Глюкозадан гликоген түзілу процесі қалай аталады?</h5>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q5" value="A"
+                      id="q5a"><label class="form-check-label" for="q5a">A) Гликогенез</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q5" value="B"
+                      id="q5b"><label class="form-check-label" for="q5b">B) Ашу процесі</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q5" value="C"
+                      id="q5c"><label class="form-check-label" for="q5c">C) Тотығу</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q5" value="D"
+                      id="q5d"><label class="form-check-label" for="q5d">D) Ас қорыту</label></div>
+                  <div class="mt-2 feedback"></div>
+                  <hr class="mt-3">
+                </div>
+
+                <!-- Q6 -->
+                <div class="mb-4" data-q="q6">
+                  <h5 class="mb-2">6. Адам ағзасында гликоген қашан көп жұмсалады?</h5>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q6" value="A"
+                      id="q6a"><label class="form-check-label" for="q6a">A) Ұйықтағанда</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q6" value="B"
+                      id="q6b"><label class="form-check-label" for="q6b">B) Тамақ ішкенде</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q6" value="C"
+                      id="q6c"><label class="form-check-label" for="q6c">C) Қозғалыс кезінде</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q6" value="D"
+                      id="q6d"><label class="form-check-label" for="q6d">D) Отырғанда</label></div>
+                  <div class="mt-2 feedback"></div>
+                  <hr class="mt-3">
+                </div>
+
+                <!-- Q7 -->
+                <div class="mb-4" data-q="q7">
+                  <h5 class="mb-2">7. Гликоген қандай заттан түзіледі?</h5>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q7" value="A"
+                      id="q7a"><label class="form-check-label" for="q7a">A) Май қышқылынан</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q7" value="B"
+                      id="q7b"><label class="form-check-label" for="q7b">B) Глюкозадан</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q7" value="C"
+                      id="q7c"><label class="form-check-label" for="q7c">C) Ақуыздан</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q7" value="D"
+                      id="q7d"><label class="form-check-label" for="q7d">D) Судан</label></div>
+                  <div class="mt-2 feedback"></div>
+                  <hr class="mt-3">
+                </div>
+
+                <!-- Q8 -->
+                <div class="mb-4" data-q="q8">
+                  <h5 class="mb-2">8. Гликоген қандай көмірсуға жатады?</h5>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q8" value="A"
+                      id="q8a"><label class="form-check-label" for="q8a">A) Моносахарид</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q8" value="B"
+                      id="q8b"><label class="form-check-label" for="q8b">B) Дисахарид</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q8" value="C"
+                      id="q8c"><label class="form-check-label" for="q8c">C) Полисахарид</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q8" value="D"
+                      id="q8d"><label class="form-check-label" for="q8d">D) Қарапайым қант</label></div>
+                  <div class="mt-2 feedback"></div>
+                  <hr class="mt-3">
+                </div>
+
+                <!-- Q9 -->
+                <div class="mb-4" data-q="q9">
+                  <h5 class="mb-2">9. Қандағы қант азайғанда қандай процесс жүреді?</h5>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q9" value="A"
+                      id="q9a"><label class="form-check-label" for="q9a">A) Гликоген жиналады</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q9" value="B"
+                      id="q9b"><label class="form-check-label" for="q9b">B) Гликоген ыдырайды</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q9" value="C"
+                      id="q9c"><label class="form-check-label" for="q9c">C) Май жиналады</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q9" value="D"
+                      id="q9d"><label class="form-check-label" for="q9d">D) Ақуыз түзіледі</label></div>
+                  <div class="mt-2 feedback"></div>
+                  <hr class="mt-3">
+                </div>
+
+                <!-- Q10 -->
+                <div class="mb-2" data-q="q10">
+                  <h5 class="mb-2">10. Гликоген адам ағзасында қандай рөл атқарады?</h5>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q10" value="A"
+                      id="q10a"><label class="form-check-label" for="q10a">A) Құрылыс материалы</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q10" value="B"
+                      id="q10b"><label class="form-check-label" for="q10b">B) Энергияның қор заты</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q10" value="C"
+                      id="q10c"><label class="form-check-label" for="q10c">C) Дәрумен</label></div>
+                  <div class="form-check"><input class="form-check-input" type="radio" name="q10" value="D"
+                      id="q10d"><label class="form-check-label" for="q10d">D) Минерал</label></div>
+                  <div class="mt-2 feedback"></div>
+                </div>
+
+                <div class="d-flex gap-2 flex-wrap mt-4">
+                  <button type="button" id="checkBtn" class="btn btn-dark px-4">
+                    <i class="bi bi-check2-circle me-1"></i> Тексеру
+                  </button>
+                  <button type="reset" id="resetBtn" class="btn btn-outline-secondary px-4">
+                    <i class="bi bi-arrow-counterclockwise me-1"></i> Қайта бастау
+                  </button>
+                </div>
+
+                <div id="resultBox" class="alert alert-secondary mt-4 mb-0 d-none">
+                  <h5 class="mb-1">Нәтиже</h5>
+                  <div id="scoreText" class="fw-bold"></div>
+                  <div id="noteText" class="small mt-1"></div>
+                </div>
+
+              </div>
+            </form>
+
           </div>
         </div>
-
-<!-- Quiz -->
-<div class="row justify-content-center mt-4">
-  <div class="col-lg-10">
-
-    <form id="quizForm" class="card shadow-sm border-0">
-      <div class="card-body p-4">
-
-        <!-- Q1 -->
-        <div class="mb-4" data-q="q1">
-          <h5 class="mb-2">1. Гликоген дегеніміз не?</h5>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q1" value="A" id="q1a"><label class="form-check-label" for="q1a">A) Ақуыз</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q1" value="B" id="q1b"><label class="form-check-label" for="q1b">B) Май</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q1" value="C" id="q1c"><label class="form-check-label" for="q1c">C) Көмірсу қоры</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q1" value="D" id="q1d"><label class="form-check-label" for="q1d">D) Витамин</label></div>
-          <div class="mt-2 feedback"></div>
-          <hr class="mt-3">
-        </div>
-
-        <!-- Q2 -->
-        <div class="mb-4" data-q="q2">
-          <h5 class="mb-2">2. Гликоген негізінен қай мүшелерде жиналады?</h5>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q2" value="A" id="q2a"><label class="form-check-label" for="q2a">A) Өкпе мен жүректе</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q2" value="B" id="q2b"><label class="form-check-label" for="q2b">B) Бауыр мен бұлшық етте</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q2" value="C" id="q2c"><label class="form-check-label" for="q2c">C) Бүйректе</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q2" value="D" id="q2d"><label class="form-check-label" for="q2d">D) Асқазанда</label></div>
-          <div class="mt-2 feedback"></div>
-          <hr class="mt-3">
-        </div>
-
-        <!-- Q3 -->
-        <div class="mb-4" data-q="q3">
-          <h5 class="mb-2">3. Гликогеннің негізгі қызметі қандай?</h5>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q3" value="A" id="q3a"><label class="form-check-label" for="q3a">A) Оттек тасымалдау</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q3" value="B" id="q3b"><label class="form-check-label" for="q3b">B) Қорғаныш қызметі</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q3" value="C" id="q3c"><label class="form-check-label" for="q3c">C) Энергия қоры болу</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q3" value="D" id="q3d"><label class="form-check-label" for="q3d">D) Жылу сақтау</label></div>
-          <div class="mt-2 feedback"></div>
-          <hr class="mt-3">
-        </div>
-
-        <!-- Q4 -->
-        <div class="mb-4" data-q="q4">
-          <h5 class="mb-2">4. Гликогеннің глюкозаға дейін ыдырау процесі қалай аталады?</h5>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q4" value="A" id="q4a"><label class="form-check-label" for="q4a">A) Фотосинтез</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q4" value="B" id="q4b"><label class="form-check-label" for="q4b">B) Гликолиз</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q4" value="C" id="q4c"><label class="form-check-label" for="q4c">C) Гликогенолиз</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q4" value="D" id="q4d"><label class="form-check-label" for="q4d">D) Тыныс алу</label></div>
-          <div class="mt-2 feedback"></div>
-          <hr class="mt-3">
-        </div>
-
-        <!-- Q5 -->
-        <div class="mb-4" data-q="q5">
-          <h5 class="mb-2">5. Глюкозадан гликоген түзілу процесі қалай аталады?</h5>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q5" value="A" id="q5a"><label class="form-check-label" for="q5a">A) Гликогенез</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q5" value="B" id="q5b"><label class="form-check-label" for="q5b">B) Ашу процесі</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q5" value="C" id="q5c"><label class="form-check-label" for="q5c">C) Тотығу</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q5" value="D" id="q5d"><label class="form-check-label" for="q5d">D) Ас қорыту</label></div>
-          <div class="mt-2 feedback"></div>
-          <hr class="mt-3">
-        </div>
-
-        <!-- Q6 -->
-        <div class="mb-4" data-q="q6">
-          <h5 class="mb-2">6. Адам ағзасында гликоген қашан көп жұмсалады?</h5>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q6" value="A" id="q6a"><label class="form-check-label" for="q6a">A) Ұйықтағанда</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q6" value="B" id="q6b"><label class="form-check-label" for="q6b">B) Тамақ ішкенде</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q6" value="C" id="q6c"><label class="form-check-label" for="q6c">C) Қозғалыс кезінде</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q6" value="D" id="q6d"><label class="form-check-label" for="q6d">D) Отырғанда</label></div>
-          <div class="mt-2 feedback"></div>
-          <hr class="mt-3">
-        </div>
-
-        <!-- Q7 -->
-        <div class="mb-4" data-q="q7">
-          <h5 class="mb-2">7. Гликоген қандай заттан түзіледі?</h5>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q7" value="A" id="q7a"><label class="form-check-label" for="q7a">A) Май қышқылынан</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q7" value="B" id="q7b"><label class="form-check-label" for="q7b">B) Глюкозадан</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q7" value="C" id="q7c"><label class="form-check-label" for="q7c">C) Ақуыздан</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q7" value="D" id="q7d"><label class="form-check-label" for="q7d">D) Судан</label></div>
-          <div class="mt-2 feedback"></div>
-          <hr class="mt-3">
-        </div>
-
-        <!-- Q8 -->
-        <div class="mb-4" data-q="q8">
-          <h5 class="mb-2">8. Гликоген қандай көмірсуға жатады?</h5>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q8" value="A" id="q8a"><label class="form-check-label" for="q8a">A) Моносахарид</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q8" value="B" id="q8b"><label class="form-check-label" for="q8b">B) Дисахарид</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q8" value="C" id="q8c"><label class="form-check-label" for="q8c">C) Полисахарид</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q8" value="D" id="q8d"><label class="form-check-label" for="q8d">D) Қарапайым қант</label></div>
-          <div class="mt-2 feedback"></div>
-          <hr class="mt-3">
-        </div>
-
-        <!-- Q9 -->
-        <div class="mb-4" data-q="q9">
-          <h5 class="mb-2">9. Қандағы қант азайғанда қандай процесс жүреді?</h5>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q9" value="A" id="q9a"><label class="form-check-label" for="q9a">A) Гликоген жиналады</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q9" value="B" id="q9b"><label class="form-check-label" for="q9b">B) Гликоген ыдырайды</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q9" value="C" id="q9c"><label class="form-check-label" for="q9c">C) Май жиналады</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q9" value="D" id="q9d"><label class="form-check-label" for="q9d">D) Ақуыз түзіледі</label></div>
-          <div class="mt-2 feedback"></div>
-          <hr class="mt-3">
-        </div>
-
-        <!-- Q10 -->
-        <div class="mb-2" data-q="q10">
-          <h5 class="mb-2">10. Гликоген адам ағзасында қандай рөл атқарады?</h5>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q10" value="A" id="q10a"><label class="form-check-label" for="q10a">A) Құрылыс материалы</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q10" value="B" id="q10b"><label class="form-check-label" for="q10b">B) Энергияның қор заты</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q10" value="C" id="q10c"><label class="form-check-label" for="q10c">C) Дәрумен</label></div>
-          <div class="form-check"><input class="form-check-input" type="radio" name="q10" value="D" id="q10d"><label class="form-check-label" for="q10d">D) Минерал</label></div>
-          <div class="mt-2 feedback"></div>
-        </div>
-
-        <div class="d-flex gap-2 flex-wrap mt-4">
-          <button type="button" id="checkBtn" class="btn btn-dark px-4">
-            <i class="bi bi-check2-circle me-1"></i> Тексеру
-          </button>
-          <button type="reset" id="resetBtn" class="btn btn-outline-secondary px-4">
-            <i class="bi bi-arrow-counterclockwise me-1"></i> Қайта бастау
-          </button>
-        </div>
-
-        <div id="resultBox" class="alert alert-secondary mt-4 mb-0 d-none">
-          <h5 class="mb-1">Нәтиже</h5>
-          <div id="scoreText" class="fw-bold"></div>
-          <div id="noteText" class="small mt-1"></div>
-        </div>
-
-      </div>
-    </form>
-
-  </div>
-</div>
 
 
   </main>
 
   <footer id="footer" class="footer position-relative light-background">
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">E-Learning</strong> <span>Барлық құқықтар қорғалған</span></p>
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">E-Learning</strong> <span>Барлық құқықтар
+          қорғалған</span></p>
       <div class="credits">
         Designed by <a href="https://kz.linkedin.com/in/asylsvanov">Assylzhan Svanov</a>
       </div>
@@ -219,7 +261,8 @@
   </footer>
 
   <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <!-- Preloader -->
   <div id="preloader"></div>
@@ -234,73 +277,73 @@
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
 
-<script>
-  const ANSWERS = {
-    q1: "C",
-    q2: "B",
-    q3: "C",
-    q4: "C",
-    q5: "A",
-    q6: "C",
-    q7: "B",
-    q8: "C",
-    q9: "B",
-    q10:"B"
-  };
+  <script>
+    const ANSWERS = {
+      q1: "C",
+      q2: "B",
+      q3: "C",
+      q4: "C",
+      q5: "A",
+      q6: "C",
+      q7: "B",
+      q8: "C",
+      q9: "B",
+      q10: "B"
+    };
 
-  const form = document.getElementById("quizForm");
-  const resultBox = document.getElementById("resultBox");
-  const scoreText = document.getElementById("scoreText");
-  const noteText = document.getElementById("noteText");
+    const form = document.getElementById("quizForm");
+    const resultBox = document.getElementById("resultBox");
+    const scoreText = document.getElementById("scoreText");
+    const noteText = document.getElementById("noteText");
 
-  function selectedValue(name){
-    const el = form.querySelector(`input[name="${name}"]:checked`);
-    return el ? el.value : null;
-  }
+    function selectedValue(name) {
+      const el = form.querySelector(`input[name="${name}"]:checked`);
+      return el ? el.value : null;
+    }
 
-  function setFeedback(qName, ok, correct){
-    const block = form.querySelector(`[data-q="${qName}"]`);
-    const fb = block.querySelector(".feedback");
+    function setFeedback(qName, ok, correct) {
+      const block = form.querySelector(`[data-q="${qName}"]`);
+      const fb = block.querySelector(".feedback");
 
-    fb.innerHTML = ok
-      ? `<span class="badge text-bg-success">Дұрыс ✅</span>`
-      : `<span class="badge text-bg-danger">Қате ❌</span> <span class="ms-2 small">Дұрыс жауап: <b>${correct}</b></span>`;
-  }
+      fb.innerHTML = ok
+        ? `<span class="badge text-bg-success">Дұрыс ✅</span>`
+        : `<span class="badge text-bg-danger">Қате ❌</span> <span class="ms-2 small">Дұрыс жауап: <b>${correct}</b></span>`;
+    }
 
-  document.getElementById("checkBtn").addEventListener("click", () => {
-    let correctCount = 0;
-    let answered = 0;
+    document.getElementById("checkBtn").addEventListener("click", () => {
+      let correctCount = 0;
+      let answered = 0;
 
-    Object.entries(ANSWERS).forEach(([qName, correct]) => {
-      const chosen = selectedValue(qName);
-      if (chosen) answered++;
+      Object.entries(ANSWERS).forEach(([qName, correct]) => {
+        const chosen = selectedValue(qName);
+        if (chosen) answered++;
 
-      const ok = chosen === correct;
-      if (ok) correctCount++;
+        const ok = chosen === correct;
+        if (ok) correctCount++;
 
-      setFeedback(qName, ok, correct);
+        setFeedback(qName, ok, correct);
+      });
+
+      const total = Object.keys(ANSWERS).length;
+      const percent = Math.round((correctCount / total) * 100);
+
+      resultBox.classList.remove("d-none");
+      scoreText.textContent = `${correctCount} / ${total} дұрыс жауап (${percent}%)`;
+
+      noteText.textContent = (answered < total)
+        ? `Ескерту: ${total - answered} сұраққа жауап берілмеген.`
+        : `Барлық сұрақтарға жауап берілді.`;
+
+      resultBox.scrollIntoView({ behavior: "smooth", block: "start" });
     });
 
-    const total = Object.keys(ANSWERS).length;
-    const percent = Math.round((correctCount / total) * 100);
-
-    resultBox.classList.remove("d-none");
-    scoreText.textContent = `${correctCount} / ${total} дұрыс жауап (${percent}%)`;
-
-    noteText.textContent = (answered < total)
-      ? `Ескерту: ${total - answered} сұраққа жауап берілмеген.`
-      : `Барлық сұрақтарға жауап берілді.`;
-
-    resultBox.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
-
-  document.getElementById("resetBtn").addEventListener("click", () => {
-    form.querySelectorAll(".feedback").forEach(el => el.innerHTML = "");
-    resultBox.classList.add("d-none");
-    scoreText.textContent = "";
-    noteText.textContent = "";
-  });
-</script>
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      form.querySelectorAll(".feedback").forEach(el => el.innerHTML = "");
+      resultBox.classList.add("d-none");
+      scoreText.textContent = "";
+      noteText.textContent = "";
+    });
+  </script>
 
 
   <!-- Main JS File -->
