@@ -27,6 +27,321 @@
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
+  <style>
+    :root{
+      --card:#ffffffcc; --border:#1b1f2a22; --text:#1b1f2a; --muted:#556;
+      --ok:#1f8f4a; --bad:#c03535; --accent:#2f6fed;
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+    }
+    *{box-sizing:border-box}
+    header h1{margin:0; font-size:18px}
+    header p{margin:6px 0 0; opacity:.85; font-size:13px; line-height:1.35}
+    .wrap{
+      display:grid;
+      grid-template-columns: 320px 1fr;
+      gap:14px;
+      padding:14px;
+      min-height: calc(100vh - 74px);
+    }
+    .panel{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgb(43 43 43);
+    border-radius: 20px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .panel .head{
+      padding:12px 12px 10px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      color:#000;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .badge{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      background: rgba(47,111,237,.25);
+      border:1px solid rgba(47,111,237,.35);
+      color:#000;
+      white-space:nowrap;
+    }
+    .panel .content{
+      padding:12px;
+      color:#000;
+    }
+    .panel .content h3{margin:0 0 8px; font-size:14px}
+    .panel .content p{margin:0 0 10px; font-size:13px; opacity:.92; line-height:1.45}
+    .hint{
+      margin-top:10px;
+      padding:10px 10px;
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 12px;
+      font-size:13px;
+      line-height:1.45;
+    }
+    .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+    button{
+      appearance:none;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,255,255,.10);
+      color:#000;
+      padding:9px 12px;
+      border-radius: 12px;
+      cursor:pointer;
+      font-weight:600;
+      font-size:13px;
+    }
+    button:hover{background: rgba(255,255,255,.14)}
+    button.primary{
+      background: rgba(47,111,237,.35);
+      border-color: rgba(47,111,237,.50);
+    }
+    button.primary:hover{background: rgba(47,111,237,.42)}
+    button.danger{
+      background: rgba(192,53,53,.25);
+      border-color: rgba(192,53,53,.40);
+    }
+    button.green{
+      background: rgba(112, 226, 102, 0.25);
+      border-color: rgba(43, 133, 58, 0.4);
+    }
+
+    /* Stage */
+    .stage{
+      border-radius: 16px;
+      overflow:hidden;
+      background: #000;
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      min-height: 520px;
+      position:relative;
+    }
+    .stageBg{
+      position:absolute; inset:0;
+      transition: background .35s ease;
+    }
+    /* ===== МУЛЬТЯШНЫЙ ФОНДАР (әр кезеңге) ===== */
+    .stageBg.bg-1{ background: #e8e6f3 }
+    .stageBg.bg-2{ background: linear-gradient(#ffecec,#ffffff); }
+    .stageBg.bg-3{ background: linear-gradient(#fff1e6,#ffffff); }
+    .stageBg.bg-4{ background: linear-gradient(#efe9ff,#ffffff); }
+    .stageBg.bg-5{ background: linear-gradient(#ffe6f2,#ffffff); }
+    .stageBg.bg-6{ background: linear-gradient(#e6fff5,#ffffff); }
+
+    /* Жоғарғы “тақырып-баннер” */
+    .stageBg::after{
+      content:"";
+      position:absolute; top:16px; left:18px;
+      font-size:26px;
+      opacity:.7;
+      background: rgba(255,255,255,.55);
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: 999px;
+      padding: 8px 14px;
+      backdrop-filter: blur(8px);
+    }
+    .stageBg.bg-1::after{ content:"🍎 Ас қорыту → глюкоза"; }
+    .stageBg.bg-2::after{ content:"🩸 Қан арқылы тасымал"; }
+    .stageBg.bg-3::after{ content:"🧡 Бауыр жасушасы"; }
+    .stageBg.bg-4::after{ content:"🧬 Гликоген синтезі"; }
+    .stageBg.bg-5::after{ content:"🌿 Тармақталу"; }
+    .stageBg.bg-6::after{ content:"🏃 Энергия қолдану"; }
+
+    /* Жеңіл “қалқымалы шарлар” */
+    .bubbles{
+      position:absolute; inset:0;
+      pointer-events:none;
+      overflow:hidden;
+    }
+    .bubble{
+      position:absolute;
+      width:18px; height:18px;
+      border-radius:999px;
+      background: rgba(47,111,237,.18);
+      animation: floatUp 7.5s linear infinite;
+      filter: blur(.1px);
+    }
+    .bubble:nth-child(2){left:18%; animation-duration:9s; width:14px; height:14px; background: rgba(31,143,74,.18)}
+    .bubble:nth-child(3){left:32%; animation-duration:8.4s; width:22px; height:22px; background: rgba(255,77,166,.14)}
+    .bubble:nth-child(4){left:55%; animation-duration:10.2s; width:12px; height:12px}
+    .bubble:nth-child(5){left:73%; animation-duration:8.8s; width:20px; height:20px; background: rgba(31,143,74,.14)}
+    .bubble:nth-child(6){left:86%; animation-duration:9.6s; width:16px; height:16px; background: rgba(255,77,166,.12)}
+    @keyframes floatUp{
+      0%{ transform: translateY(110%); opacity:.0 }
+      10%{ opacity:.35 }
+      100%{ transform: translateY(-30%); opacity:0 }
+    }
+
+    .stageInner{
+      position:relative;
+      padding:16px;
+      min-height: 520px;
+      display:grid;
+      grid-template-columns: 1fr 340px;
+      gap:14px;
+    }
+
+    .board{
+      background: var(--card);
+      border:1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      backdrop-filter: blur(8px);
+    }
+    .board .bhead{
+      padding:12px 12px 10px;
+      border-bottom:1px solid var(--border);
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .board .bhead .title{
+      display:flex; flex-direction:column; gap:3px;
+    }
+    .board .bhead .title strong{font-size:14px}
+    .board .bhead .title span{font-size:12px; color:var(--muted)}
+    .board .bbody{padding:12px}
+
+    .zones{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+    }
+    .zone{
+      border:2px dashed rgba(47,111,237,.25);
+      background: rgba(47,111,237,.06);
+      border-radius: 14px;
+      padding:12px;
+      min-height: 82px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      justify-content:center;
+      position:relative;
+      transition: transform .12s ease;
+    }
+    .zone:hover{ transform: translateY(-1px); }
+    .zone.ok{
+      border-color: rgba(31,143,74,.35);
+      background: rgba(31,143,74,.08);
+    }
+    .zone.bad{
+      border-color: rgba(192,53,53,.40);
+      background: rgba(192,53,53,.08);
+    }
+    .zone small{color:var(--muted)}
+    .zone .slot{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:4px;
+      min-height: 34px;
+    }
+
+    /* Tray */
+    .tray{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+    }
+    .trayCard{
+      background: var(--card);
+      border:1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      backdrop-filter: blur(8px);
+    }
+    .trayCard .bhead{
+      padding:12px 12px 10px;
+      border-bottom:1px solid var(--border);
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .trayCard .bhead strong{font-size:14px}
+    .trayCard .bbody{padding:12px}
+    .items{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+    .item{
+      user-select:none;
+      padding:10px 10px;
+      border-radius: 14px;
+      border:1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.90);
+      box-shadow: 0 6px 18px rgba(0,0,0,.06);
+      cursor:grab;
+      min-width: 120px;
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+      transition: transform .12s ease;
+    }
+    .item:hover{ transform: translateY(-1px); }
+    .item:active{cursor:grabbing}
+    .item b{font-size:13px}
+    .item span{font-size:12px; color:var(--muted)}
+    .item[data-kind="enzyme"]{border-color: rgba(47,111,237,.25)}
+    .item[data-kind="substrate"]{border-color: rgba(31,143,74,.25)}
+    .item[data-kind="energy"]{border-color: rgba(192,53,53,.20)}
+    .ghost{ opacity:.45; transform: scale(.98); }
+
+    /* “Тірі” анимация: карточка drop болғанда қысқа “pop” */
+    .pop{
+      animation: pop .18s ease-out;
+    }
+    @keyframes pop{
+      from{ transform: scale(.98); }
+      to{ transform: scale(1); }
+    }
+
+    .msg{
+      margin-top:10px;
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.78);
+      line-height:1.45;
+      font-size:13px;
+    }
+    .msg.ok{border-color: rgba(31,143,74,.35)}
+    .msg.bad{border-color: rgba(192,53,53,.40)}
+    .kpi{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .pill{
+      font-size:12px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.65);
+      color:#111;
+    }
+    .footerNote{
+      margin-top:10px;
+      font-size:12px;
+      color: #000;
+      line-height:1.45;
+      opacity:.95;
+    }
+
+    @media (max-width: 980px){
+      .wrap{grid-template-columns: 1fr}
+      .stageInner{grid-template-columns: 1fr}
+    }
+  </style>
   <!-- =======================================================
   * Template Name: Eventix
   * Template URL: https://bootstrapmade.com/eventix-bootstrap-events-website-template/
@@ -42,182 +357,155 @@
     <div class="header-container container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.webp" alt=""> -->
-        <h1 class="sitename">Eventix</h1>
-      </a>
+        <h1 class="sitename">E-Learning</h1>
+    </a>
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#schedule">Schedule</a></li>
-          <li><a href="#speakers">Speakers</a></li>
-          <li><a href="venue.html">Venue</a></li>
-          <li class="dropdown"><a href="#"><span>More Pages</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="speaker-details.html">Speaker Details</a></li>
-              <li><a href="buy-tickets.html">Buy Tickets</a></li>
-              <li><a href="terms.html">Terms</a></li>
-              <li><a href="privacy.html">Privacy</a></li>
-              <li><a href="404.html">404</a></li>
-            </ul>
-          </li>
-          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="#">Dropdown 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Dropdown 2</a></li>
-              <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li>
-            </ul>
-          </li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html" class="active">Басты бет</a></li>
+          <li><a href="#about">Гикогенез анимациясы</a></li>
+          <li><a href="starter-page.html">Симуляция жасау</a></li>
+          <li><a href="privacy.html">Біліміңді тексер</a></li>
+          <li><a href="#speakers">Авторлар</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="btn-getstarted" href="buy-tickets.html">Buy Tickets</a>
-
+      <a class="btn-getstarted" href="contact.html">Кері байланыс</a>
+  
     </div>
   </header>
 
   <main class="main">
-
-    <!-- Page Title -->
-    <div class="page-title">
-      <div class="heading">
-        <div class="container">
-          <div class="row d-flex justify-content-center text-center">
-            <div class="col-lg-8">
-              <h1 class="heading-title">Starter Page</h1>
-              <p class="mb-0">
-                Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo
-                odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum
-                debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat
-                ipsum dolorem.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <nav class="breadcrumbs">
-        <div class="container">
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">Starter Page</li>
-          </ol>
-        </div>
-      </nav>
-    </div><!-- End Page Title -->
 
     <!-- Starter Section Section -->
     <section id="starter-section" class="starter-section section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Starter Section</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <h2>Гликогенез симуляциясы</h2>
+        <p>Оқушы дұрыс кезектілікпен молекулалар мен ферменттерді аймақтарға сүйреп апарады (Drag & Drop).</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up">
-        <p>Use this page as a starter for your own custom pages.</p>
+        <div class="wrap">
+    <!-- Left panel -->
+    <section class="panel" aria-label="Нұсқаулық" style="padding-top: 15px !important;">
+      <div class="head">
+        <div>Нұсқаулық</div>
+        <div class="badge" id="stepBadge">Кезең 1 / 6</div>
+      </div>
+      <div class="content">
+        <h3 id="stepTitle">1) Фосфорлану</h3>
+        <p id="stepGoal">Глюкозаны фосфорландырып, глюкоза-6-фосфат (G6P) түз.</p>
+
+        <div class="hint" id="stepTheory">
+          <b>Ғылыми негіз:</b> Глюкоза гексокиназа арқылы (бауырда — глюкокиназа) фосфорланады.
+        </div>
+
+        <div class="kpi">
+          <div class="pill">Дұрыс: <b id="okCount">0</b></div>
+          <div class="pill">Қате: <b id="badCount">0</b></div>
+          <div class="pill">Ұпай: <b id="score">0</b></div>
+        </div>
+
+        <div class="row">
+          <button class="primary" id="btnCheck">Тексеру</button>
+          <button class="green" id="btnNext">Келесі кезең</button>
+          <button class="danger" id="btnReset">Қайта бастау</button>
+        </div>
+
+        <div class="footerNote">
+          Кеңес: әр кезеңде оң жақтағы «Элементтерден» қажетті молекула/ферментті алып,
+          сол жақтағы «Реакция аймағына» апарып тастаңыз. Артық элементті басып өшіруге болады.
+        </div>
+      </div>
+    </section>
+
+    <!-- Stage -->
+    <main class="stage" aria-label="Симуляция">
+      <div class="stageBg bg-1" id="stageBg"></div>
+      <div class="bubbles" aria-hidden="true">
+        <div class="bubble" style="left:8%; bottom:-30px;"></div>
+        <div class="bubble" style="left:18%; bottom:-40px;"></div>
+        <div class="bubble" style="left:32%; bottom:-35px;"></div>
+        <div class="bubble" style="left:55%; bottom:-50px;"></div>
+        <div class="bubble" style="left:73%; bottom:-45px;"></div>
+        <div class="bubble" style="left:86%; bottom:-38px;"></div>
+      </div>
+
+      <div class="stageInner">
+        <!-- Board -->
+        <div class="board" role="region" aria-label="Реакция аймағы">
+          <div class="bhead">
+            <div class="title">
+              <strong id="boardTitle">Кезең 1: Фосфорлану</strong>
+              <span id="boardSubtitle">Глюкоза → Глюкоза-6-фосфат (G6P)</span>
+            </div>
+            <span class="badge" id="reactionBadge">Жиналмады</span>
+          </div>
+
+          <div class="bbody">
+            <div class="zones" id="zones"></div>
+
+            <div class="msg" id="feedback">
+              Элементтерді сүйреп апарып, реакцияны құрастырыңыз. Дайын болсаңыз — «Тексеру».
+            </div>
+          </div>
+        </div>
+
+        <!-- Right tray -->
+        <div class="tray">
+          <div class="trayCard" role="region" aria-label="Элементтер">
+            <div class="bhead">
+              <strong>Элементтер</strong>
+              <span class="badge">Drag & Drop</span>
+            </div>
+            <div class="bbody">
+              <div class="items" id="items"></div>
+              <div style="margin-top:10px; font-size:12px; color:var(--muted); line-height:1.45;">
+                Ескерту: Кейбір элементтер келесі кезеңдерде ғана керек болады.
+              </div>
+            </div>
+          </div>
+
+          <div class="trayCard" role="region" aria-label="Нәтиже">
+            <div class="bhead">
+              <strong>Схема</strong>
+              <span class="badge" id="equationTag">—</span>
+            </div>
+            <div class="bbody" style="line-height:1.5; font-size:13px;">
+              <b>Реакция теңдеуі:</b>
+              <div id="equation" style="margin-top:6px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;">
+                —
+              </div>
+              <div id="enzymeNote" style="margin-top:10px; font-size:12px; color:var(--muted); line-height:1.45;">
+                —
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
       </div>
 
     </section><!-- /Starter Section Section -->
 
   </main>
 
+
   <footer id="footer" class="footer position-relative light-background">
-
-    <div class="container footer-top">
-      <div class="row gy-4">
-        <div class="col-lg-4 col-md-6 footer-about">
-          <a href="index.html" class="logo d-flex align-items-center">
-            <span class="sitename">Eventix</span>
-          </a>
-          <div class="footer-contact pt-3">
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
-            <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-            <p><strong>Email:</strong> <span>info@example.com</span></p>
-          </div>
-          <div class="social-links d-flex mt-4">
-            <a href=""><i class="bi bi-twitter-x"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
-            <a href=""><i class="bi bi-instagram"></i></a>
-            <a href=""><i class="bi bi-linkedin"></i></a>
-          </div>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Useful Links</h4>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Terms of service</a></li>
-            <li><a href="#">Privacy policy</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><a href="#">Web Design</a></li>
-            <li><a href="#">Web Development</a></li>
-            <li><a href="#">Product Management</a></li>
-            <li><a href="#">Marketing</a></li>
-            <li><a href="#">Graphic Design</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Hic solutasetp</h4>
-          <ul>
-            <li><a href="#">Molestiae accusamus iure</a></li>
-            <li><a href="#">Excepturi dignissimos</a></li>
-            <li><a href="#">Suscipit distinctio</a></li>
-            <li><a href="#">Dilecta</a></li>
-            <li><a href="#">Sit quas consectetur</a></li>
-          </ul>
-        </div>
-
-        <div class="col-lg-2 col-md-3 footer-links">
-          <h4>Nobis illum</h4>
-          <ul>
-            <li><a href="#">Ipsam</a></li>
-            <li><a href="#">Laudantium dolorum</a></li>
-            <li><a href="#">Dinera</a></li>
-            <li><a href="#">Trodelas</a></li>
-            <li><a href="#">Flexo</a></li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">Eventix</strong> <span>All Rights Reserved</span></p>
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">E-Learning</strong> <span>Барлық құқықтар қорғалған</span></p>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> | <a href="https://bootstrapmade.com/tools/">DevTools</a>
+        Designed by <a href="https://kz.linkedin.com/in/asylsvanov">Assylzhan Svanov</a>
       </div>
     </div>
 
   </footer>
-
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
@@ -233,6 +521,372 @@
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+
+  <script>
+/**
+ * Гликогенез симуляциясы (1 файл, offline).
+ * Drag & Drop арқылы кезең-кезеңімен жинақтау.
+ * Артық элемент: клонды басып өшіруге болады.
+ */
+
+const ALL_ITEMS = [
+  // metabolites
+  { id:"glucose",   kind:"substrate", label:"Глюкоза",          desc:"C₆H₁₂O₆" },
+  { id:"g6p",       kind:"substrate", label:"Глюкоза-6-фосфат", desc:"G6P" },
+  { id:"g1p",       kind:"substrate", label:"Глюкоза-1-фосфат", desc:"G1P" },
+  { id:"udpg",      kind:"substrate", label:"УДФ-глюкоза",      desc:"UDP-Glc" },
+  { id:"glycogen",  kind:"substrate", label:"Гликоген",         desc:"(α1→4, α1→6)" },
+  { id:"primer",    kind:"substrate", label:"Праймер (гликогенин)", desc:"«затравка»" },
+
+  // energy / nucleotides
+  { id:"atp",       kind:"energy", label:"АТФ", desc:"ATP" },
+  { id:"utp",       kind:"energy", label:"УТФ", desc:"UTP" },
+  { id:"udp",       kind:"energy", label:"УДФ", desc:"UDP" },
+  { id:"ppi",       kind:"energy", label:"Пирофосфат", desc:"PPi" },
+
+  // enzymes
+  { id:"hexokinase",  kind:"enzyme", label:"Гексокиназа", desc:"(көп тіндер)" },
+  { id:"glucokinase", kind:"enzyme", label:"Глюкокиназа", desc:"(бауыр)" },
+  { id:"pgm",         kind:"enzyme", label:"Фосфоглюкомутаза", desc:"G6P ↔ G1P" },
+  { id:"udpgppase",   kind:"enzyme", label:"UDP-Glc пирофосфорилаза", desc:"G1P+UTP→UDP-Glc" },
+  { id:"glySynthase", kind:"enzyme", label:"Гликогенсинтаза", desc:"α-1,4" },
+  { id:"branchEnz",   kind:"enzyme", label:"Тармақтаушы фермент", desc:"α-1,6" },
+];
+
+const STEPS = [
+  {
+    id: 1,
+    title: "1) Фосфорлану",
+    boardTitle: "Кезең 1: Фосфорлану",
+    subtitle: "Глюкоза → Глюкоза-6-фосфат (G6P)",
+    goal: "Глюкозаны фосфорландырып, глюкоза-6-фосфат (G6P) түз.",
+    theory: "Глюкоза гексокиназа арқылы (бауырда — глюкокиназа) фосфорланады. Энергия көзі — АТФ.",
+    equation: "Глюкоза + АТФ → Глюкоза-6-фосфат + АДФ",
+    enzymeNote: "Фермент: гексокиназа (көп тіндер) немесе глюкокиназа (бауыр).",
+    zones: [
+      { id:"z_sub",    title:"Субстрат", hint:"Глюкоза", accepts:["glucose"] },
+      { id:"z_energy", title:"Энергия",  hint:"АТФ", accepts:["atp"] },
+      { id:"z_enzyme", title:"Фермент",  hint:"Гексокиназа немесе глюкокиназа", accepts:["hexokinase","glucokinase"] },
+      { id:"z_prod",   title:"Өнім",     hint:"Глюкоза-6-фосфат", accepts:["g6p"] },
+    ]
+  },
+  {
+    id: 2,
+    title: "2) Изомерлену",
+    boardTitle: "Кезең 2: G6P → G1P",
+    subtitle: "Глюкоза-6-фосфат → Глюкоза-1-фосфат",
+    goal: "G6P-ты G1P-қа айналдыр.",
+    theory: "Фосфоглюкомутаза глюкоза-6-фосфатты глюкоза-1-фосфатқа ауыстырады (фосфат тобының ішкі орын ауыстыруы).",
+    equation: "Глюкоза-6-фосфат ⇄ Глюкоза-1-фосфат",
+    enzymeNote: "Фермент: фосфоглюкомутаза.",
+    zones: [
+      { id:"z_sub",    title:"Субстрат", hint:"Глюкоза-6-фосфат (G6P)", accepts:["g6p"] },
+      { id:"z_enzyme", title:"Фермент",  hint:"Фосфоглюкомутаза", accepts:["pgm"] },
+      { id:"z_prod",   title:"Өнім",     hint:"Глюкоза-1-фосфат (G1P)", accepts:["g1p"] },
+    ]
+  },
+  {
+    id: 3,
+    title: "3) Белсендіру (UDP-Glc)",
+    boardTitle: "Кезең 3: УДФ-глюкоза түзілуі",
+    subtitle: "G1P + UTP → UDP-глюкоза + PPi",
+    goal: "G1P-ты UTP арқылы белсендіріп, UDP-глюкоза жаса.",
+    theory: "Глюкоза-1-фосфат UTP-пен әрекеттесіп UDP-глюкоза түзеді, пирофосфат (PPi) бөлінеді. Катализатор — UDP-глюкоза пирофосфорилаза.",
+    equation: "Глюкоза-1-фосфат + УТФ ⇄ УДФ-глюкоза + PPi",
+    enzymeNote: "Фермент: UDP-глюкоза пирофосфорилаза (UDPG pyrophosphorylase).",
+    zones: [
+      { id:"z_sub",    title:"Субстрат",   hint:"Глюкоза-1-фосфат (G1P)", accepts:["g1p"] },
+      { id:"z_energy", title:"Кофактор",   hint:"УТФ (UTP)", accepts:["utp"] },
+      { id:"z_enzyme", title:"Фермент",    hint:"UDP-глюкоза пирофосфорилаза", accepts:["udpgppase"] },
+      { id:"z_prod",   title:"Өнім",       hint:"УДФ-глюкоза", accepts:["udpg"] },
+      { id:"z_by",     title:"Жанама өнім",hint:"Пирофосфат (PPi)", accepts:["ppi"] },
+    ]
+  },
+  {
+    id: 4,
+    title: "4) Ұзару (α-1,4)",
+    boardTitle: "Кезең 4: Тізбектің ұзаруы",
+    subtitle: "UDP-глюкоза → гликогенге қосылады (α-1,4)",
+    goal: "UDP-глюкозадан глюкоза қалдығын гликоген тізбегіне қос.",
+    theory: "Гликогенсинтаза UDP-глюкозадан глюкозаны өсіп тұрған тізбекке көшіреді де α-(1→4) байланысын түзеді. Реакция праймер (гликогенин/қысқа тізбек) болғанда жүреді.",
+    equation: "УДФ-глюкоза + (Гликоген)n → (Гликоген)n+1 + УДФ",
+    enzymeNote: "Фермент: гликогенсинтаза. Шарт: праймер (гликогенин) бар болуы керек.",
+    zones: [
+      { id:"z_sub",    title:"Донор",     hint:"УДФ-глюкоза", accepts:["udpg"] },
+      { id:"z_primer", title:"Праймер",   hint:"Гликогенин/«затравка»", accepts:["primer"] },
+      { id:"z_enzyme", title:"Фермент",   hint:"Гликогенсинтаза", accepts:["glySynthase"] },
+      { id:"z_prod",   title:"Өнім",      hint:"Гликоген (ұзарған)", accepts:["glycogen"] },
+      { id:"z_by",     title:"Жанама өнім",hint:"УДФ", accepts:["udp"] },
+    ]
+  },
+  {
+    id: 5,
+    title: "5) Тармақталу (α-1,6)",
+    boardTitle: "Кезең 5: Тармақталу",
+    subtitle: "α-1,6 байланыс — жаңа бұтақ",
+    goal: "Гликогенге тармақ (α-1,6) қосуды көрсет.",
+    theory: "Тармақтаушы фермент олигосахарид бөлігін тасымалдап, α-1,6 байланысы арқылы жаңа бұтақ жасайды. Тармақталу ерігіштікті және синтез/ыдырау жылдамдығын арттырады.",
+    equation: "Тізбек → Тармақталған гликоген  (α-1,6)",
+    enzymeNote: "Фермент: тармақтаушы фермент (branching enzyme).",
+    zones: [
+      { id:"z_sub",    title:"Негізгі тізбек", hint:"Гликоген", accepts:["glycogen"] },
+      { id:"z_enzyme", title:"Фермент",        hint:"Тармақтаушы фермент", accepts:["branchEnz"] },
+      { id:"z_prod",   title:"Нәтиже",         hint:"Тармақталған гликоген", accepts:["glycogen"] },
+    ]
+  },
+  {
+    id: 6,
+    title: "6) Қорытынды",
+    boardTitle: "Кезең 6: Энергия қолдану",
+    subtitle: "Гликоген — энергия қоры (қажет кезде ыдырайды)",
+    goal: "Гликоген не үшін жиналатынын қорытындыла.",
+    theory: "Қозғалыс/ашығу кезінде гликогеннен глюкоза алынады (гликогенолиз). Бұл симуляция гликогенездің негізгі сатыларын бекітеді.",
+    equation: "Гликоген → Глюкоза (қажет кезде, гликогенолиз)",
+    enzymeNote: "Бұл кезең — қорытынды. Сіз барлық негізгі сатыларды орындадыңыз.",
+    zones: [
+      { id:"z_conc", title:"Қорытынды", hint:"Гликоген — энергия қоры", accepts:["glycogen"] },
+    ]
+  }
+];
+
+let stepIndex = 0;
+let okCount = 0;
+let badCount = 0;
+let score = 0;
+
+const els = {
+  stepBadge: document.getElementById("stepBadge"),
+  stepTitle: document.getElementById("stepTitle"),
+  stepGoal: document.getElementById("stepGoal"),
+  stepTheory: document.getElementById("stepTheory"),
+  boardTitle: document.getElementById("boardTitle"),
+  boardSubtitle: document.getElementById("boardSubtitle"),
+  reactionBadge: document.getElementById("reactionBadge"),
+  zones: document.getElementById("zones"),
+  items: document.getElementById("items"),
+  feedback: document.getElementById("feedback"),
+  stageBg: document.getElementById("stageBg"),
+  okCount: document.getElementById("okCount"),
+  badCount: document.getElementById("badCount"),
+  score: document.getElementById("score"),
+  equation: document.getElementById("equation"),
+  equationTag: document.getElementById("equationTag"),
+  enzymeNote: document.getElementById("enzymeNote"),
+};
+
+const btnCheck = document.getElementById("btnCheck");
+const btnNext  = document.getElementById("btnNext");
+const btnReset = document.getElementById("btnReset");
+
+function renderItemsForStep(step){
+  // reduce confusion: show needed + a few distractors
+  const allowSet = new Set();
+  step.zones.forEach(z => z.accepts.forEach(id => allowSet.add(id)));
+
+  const needed = ALL_ITEMS.filter(it => allowSet.has(it.id));
+
+  // distractors: pick some items not used in this step
+  const distractors = ALL_ITEMS
+    .filter(it => !allowSet.has(it.id))
+    .filter(it => ["enzyme","substrate","energy"].includes(it.kind))
+    .slice(0, 6);
+
+  const list = [...needed, ...distractors];
+
+  els.items.innerHTML = "";
+  list.forEach(it => {
+    const div = document.createElement("div");
+    div.className = "item";
+    div.draggable = true;
+    div.dataset.id = it.id;
+    div.dataset.kind = it.kind;
+    div.innerHTML = `<b>${it.label}</b><span>${it.desc}</span>`;
+    div.addEventListener("dragstart", onDragStart);
+    div.addEventListener("dragend", onDragEnd);
+    els.items.appendChild(div);
+  });
+}
+
+function renderZones(step){
+  els.zones.innerHTML = "";
+  step.zones.forEach(z => {
+    const zone = document.createElement("div");
+    zone.className = "zone";
+    zone.dataset.zoneId = z.id;
+    zone.dataset.accepts = z.accepts.join(",");
+    zone.innerHTML = `
+      <div><b>${z.title}</b> <small>(${z.hint})</small></div>
+      <div class="slot" aria-label="${z.title} слот"></div>
+    `;
+    zone.addEventListener("dragover", onDragOver);
+    zone.addEventListener("drop", onDrop);
+    els.zones.appendChild(zone);
+  });
+}
+
+function setStageUI(step){
+  els.stepBadge.textContent = `Кезең ${step.id} / 6`;
+  els.stepTitle.textContent = step.title;
+  els.stepGoal.textContent = step.goal;
+  els.stepTheory.innerHTML = `<b>Ғылыми негіз:</b> ${step.theory}`;
+
+  els.boardTitle.textContent = step.boardTitle;
+  els.boardSubtitle.textContent = step.subtitle;
+
+  // фон ауыстыру (мультяшный)
+  els.stageBg.className = "stageBg bg-" + step.id;
+
+  els.equation.textContent = step.equation;
+  els.equationTag.textContent = `Кезең ${step.id}`;
+  els.enzymeNote.textContent = step.enzymeNote;
+
+  els.reactionBadge.textContent = "Жиналмады";
+  els.reactionBadge.style.background = "rgba(47,111,237,.20)";
+  els.reactionBadge.style.borderColor = "rgba(47,111,237,.30)";
+
+  els.feedback.className = "msg";
+  els.feedback.textContent = "Элементтерді сүйреп апарып, реакцияны құрастырыңыз. Дайын болсаңыз — «Тексеру».";
+}
+
+function resetZonesState(){
+  [...els.zones.querySelectorAll(".zone")].forEach(z => {
+    z.classList.remove("ok","bad");
+    const slot = z.querySelector(".slot");
+    slot.innerHTML = "";
+  });
+}
+
+function updateKPIs(){
+  els.okCount.textContent = String(okCount);
+  els.badCount.textContent = String(badCount);
+  els.score.textContent = String(score);
+}
+
+let draggedEl = null;
+
+function onDragStart(e){
+  draggedEl = e.currentTarget;
+  e.dataTransfer.setData("text/plain", draggedEl.dataset.id);
+  setTimeout(()=> draggedEl.classList.add("ghost"), 0);
+}
+function onDragEnd(){
+  if(draggedEl) draggedEl.classList.remove("ghost");
+  draggedEl = null;
+}
+function onDragOver(e){ e.preventDefault(); }
+
+function onDrop(e){
+  e.preventDefault();
+  const zone = e.currentTarget;
+  const slot = zone.querySelector(".slot");
+  const id = e.dataTransfer.getData("text/plain");
+  if(!id) return;
+
+  // prevent duplicates
+  if([...slot.querySelectorAll(".item")].some(x => x.dataset.id === id)) return;
+
+  // clone visual item into slot
+  const src = [...els.items.querySelectorAll(".item")].find(x => x.dataset.id === id);
+  if(!src) return;
+
+  const clone = src.cloneNode(true);
+  clone.draggable = true;
+  clone.classList.remove("ghost");
+  clone.classList.add("pop");
+  clone.addEventListener("dragstart", onDragStart);
+  clone.addEventListener("dragend", onDragEnd);
+
+  // click-to-remove
+  clone.title = "Өшіру үшін басыңыз";
+  clone.addEventListener("click", ()=> clone.remove());
+
+  slot.appendChild(clone);
+  zone.classList.remove("ok","bad");
+}
+
+function checkStep(){
+  const step = STEPS[stepIndex];
+  let allOk = true;
+  let stepOk = 0;
+  let stepBad = 0;
+
+  [...els.zones.querySelectorAll(".zone")].forEach(zone => {
+    const accepts = (zone.dataset.accepts || "").split(",").filter(Boolean);
+    const placed = [...zone.querySelectorAll(".slot .item")].map(it => it.dataset.id);
+
+    // must include >=1 acceptable item; and all placed items must be acceptable
+    const hasAnyAccept = placed.some(id => accepts.includes(id));
+    const allPlacedOk = placed.every(id => accepts.includes(id));
+
+    if(hasAnyAccept && allPlacedOk){
+      zone.classList.remove("bad");
+      zone.classList.add("ok");
+      stepOk += 1;
+    } else {
+      zone.classList.remove("ok");
+      zone.classList.add("bad");
+      allOk = false;
+      stepBad += 1;
+    }
+  });
+
+  okCount += stepOk;
+  badCount += stepBad;
+
+  if(allOk){
+    score += 10;
+    els.feedback.className = "msg ok";
+    els.feedback.innerHTML = `<b style="color:var(--ok)">Дұрыс!</b> Кезең ${step.id} талаптары орындалды. «Келесі кезең» батырмасын басыңыз.`;
+    els.reactionBadge.textContent = "Дұрыс құрастырылды";
+    els.reactionBadge.style.background = "rgba(31,143,74,.18)";
+    els.reactionBadge.style.borderColor = "rgba(31,143,74,.35)";
+  } else {
+    score = Math.max(0, score - 2);
+    els.feedback.className = "msg bad";
+    els.feedback.innerHTML = `<b style="color:var(--bad)">Қате бар.</b> Қызыл аймақтарды түзетіңіз: дұрыс элементтерді қойып, артықтарын өшіріңіз (элементті басып өшіруге болады).`;
+    els.reactionBadge.textContent = "Толық емес";
+    els.reactionBadge.style.background = "rgba(192,53,53,.16)";
+    els.reactionBadge.style.borderColor = "rgba(192,53,53,.35)";
+  }
+
+  updateKPIs();
+}
+
+function goNext(){
+  if(stepIndex < STEPS.length - 1){
+    stepIndex += 1;
+    loadStep(stepIndex);
+  } else {
+    els.feedback.className = "msg ok";
+    els.feedback.innerHTML = `<b style="color:var(--ok)">Бітті!</b> Сіз гликогенездің негізгі сатыларын аяқтадыңыз. Ұпай: <b>${score}</b>.`;
+  }
+}
+
+function resetAll(){
+  stepIndex = 0;
+  okCount = 0;
+  badCount = 0;
+  score = 0;
+  updateKPIs();
+  loadStep(stepIndex);
+}
+
+function loadStep(idx){
+  const step = STEPS[idx];
+  setStageUI(step);
+  renderZones(step);
+  renderItemsForStep(step);
+  resetZonesState();
+}
+
+btnCheck.addEventListener("click", checkStep);
+btnNext.addEventListener("click", goNext);
+btnReset.addEventListener("click", resetAll);
+
+// init
+updateKPIs();
+loadStep(stepIndex);
+</script>
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
